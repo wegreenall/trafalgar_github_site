@@ -8,22 +8,16 @@ This site provides access to three repositories containing code for various proj
 ## Available Repositories
 
 ### 1. MercerGP
-[Repository Link](https://github.com/wegreenall/mercergp)
-
 This repository contains code related to Mercer Gaussian Processes. It includes implementations and experiments demonstrating the application of Mercer kernel techniques.
 
 ### 2. Ortho
-[Repository Link](https://github.com/wegreenall/ortho)
-
 This repository is focused on orthogonalization techniques and their applications in statistical modeling. The code includes various numerical methods and optimization routines.
 
 ### 3. Gaussian Cox Processes Paper Code
-[Repository Link](https://github.com/wegreenall/gaussian_cox_processes_paper_code)
-
 This repository contains code used in the research paper on Gaussian Cox Processes. It includes simulation scripts, data processing tools, and visualization techniques.
 
 ## How to Use
-To explore the code, simply click on the repository links above. You can clone any repository using the following command:
+To explore the code, clone this repo:
 ```sh
-git clone https://github.com/wegreenall/REPO_NAME.git
+git clone https://github.com/wegreenall/trafalger_github_site
 ```
