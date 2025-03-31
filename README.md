@@ -19,5 +19,6 @@ This repository contains code used in the research paper on Gaussian Cox Process
 ## How to Use
 To explore the code, clone this repo:
 ```sh
+<<<<<<< HEAD
 git clone https://github.com/wegreenall/trafalgar_github_site
 ```
