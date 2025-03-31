@@ -1,6 +1,7 @@
+# TRAFALGAR Deliverable Code
+
 This is the project website for the TRAFALGAR project (id:11367901).
 It contains the relevant code repositories as part of the deliverables.
-# Welcome to My GitHub Pages Site
 
 This site provides access to three repositories containing code for various projects. Below, you'll find a brief overview of each repository along with links to explore the code.
 
