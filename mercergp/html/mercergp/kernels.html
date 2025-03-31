@@ -1,0 +1,1669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>mercergp.kernels API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>mercergp.kernels</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># WGK.py
+# import pdb
+# import opt_einsum as oe
+# import matplotlib
+import torch
+
+import matplotlib.pyplot as plt
+
+from ortho.basis_functions import (
+    Basis,
+    # smooth_exponential_basis,
+    smooth_exponential_eigenvalues,
+    standard_chebyshev_basis,
+)
+
+
+&#34;&#34;&#34;
+This module contains classes for operating kernels related to the Gaussian
+processes.
+
+Each kernel has a standard interface, and adding new kernels requires
+implementation of the evaluate_kernel method.
+The exception to this rule is the Mercer Kernel, which operates in a different
+way by being constructed from a set of basis
+functions multiplied by the eigenvalues of the &#34;Mercer&#34;  Hilbert-Schmidt
+integral operator on the basis functions. That kernel is used in the WGMGP
+module for colloquially named Mercer Gaussian Processes.
+&#34;&#34;&#34;
+
+
+class KernelError(Exception):
+    def __init__(self):
+        print(&#34;No Available Kernel Specified&#34;)
+        pass
+
+
+class UpdateError(Exception):
+    def __init__(self):
+        print(&#34;Update vectors not of same length&#34;)
+        pass
+
+
+class StationaryKernel:
+    required_kernel_arguments = {&#34;noise_parameter&#34;, &#34;variance_parameter&#34;}
+
+    &#34;&#34;&#34;
+    A base class for stationary kernels.
+
+    Stationary kernels depend only on |x-x&#39;|. It contains a method for
+    generating a blank gram matrix  w/ data (ie, X-X&#39;) which is then
+    evaluated at the kernel function (so, exp(-(X-X&#39;)(X-X&#39;)&#39; / l^2)&#34;&#34;&#34;
+
+    def __init__(self, kernel_args: dict):
+        &#34;&#34;&#34;Initialises the kernel
+
+        when subclassing, append to required_args the necessary parameters.
+
+        all elements of the dict kernel_args should be torch.Tensors
+        &#34;&#34;&#34;
+        self.kernel_args = kernel_args
+        assert set(kernel_args.keys()).issuperset(
+            self.required_kernel_arguments
+        )
+
+    def __add__(self, other):
+        new_kernel = CompositeKernel([self, other])
+        return new_kernel
+
+    def __call__(self, input_points: torch.Tensor, test_points: torch.Tensor):
+        &#34;&#34;&#34;returns a Tensor representing the Gram matrix of the kernel
+        function evaluated at the differences between input and test points.
+
+        Tensor shape: bxnxm
+
+        b: batch length
+        n: dimension count (so n=2 for 2-d data)
+        m: data length
+        for each tensor(input or test), the last dimension should
+        be the length of the data&#34;&#34;&#34;
+        input_points = self._validate_shape(input_points)
+        test_points = self._validate_shape(test_points)
+        data_differences = self.get_data_differences(input_points, test_points)
+        evaluated_kernel = self.evaluate_kernel(data_differences)
+        return evaluated_kernel
+
+    def _validate_shape(self, points):
+        &#34;&#34;&#34;
+        Validates the shape of potential input points to be N x 1 as
+        opposed to bare N.
+        &#34;&#34;&#34;
+        if len(points.shape) == 1:
+            return points.unsqueeze(1)
+        else:
+            return points
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        &#34;&#34;&#34;
+        Returns the kernel function inverse evaluated at the given input
+        points. It receives only one tensor as input since the kernel inverse
+        is square.
+        &#34;&#34;&#34;
+        kernel = self(input_points, input_points)
+        kernel += self.kernel_args[&#34;noise_parameter&#34;] ** 2 * torch.eye(
+            input_points.shape[0]
+        )  # sigma_e
+        return torch.inverse(kernel)
+
+    def get_params(self):
+        # kernel_params = [self.kernel_args[param] for param in
+        # self.kernel_args]
+        return self.kernel_args
+
+    @staticmethod
+    def get_data_differences(input_points, test_points):
+        &#34;&#34;&#34;
+        Creates the &#39;data-differences&#39; matrix made up of input points and test
+        points, where input is x, test points are y;
+        |x1-y1  x1-y2 x1-y3 ... |
+        |x2-y1  x2-y2 x2-y3 ... |
+        |   .                   |
+        |   :                   |
+
+        This allows one to make:the input-point (variance-covariance) block of
+        the kernel; the input-test point (covariance) block; and the test-point
+        (variance-covariance) block of the Gram matrix.
+
+        Perhaps this operation could be called the outer differences following
+        the outer product being a matrix/tensor whose elements are the products
+        of all the pairs of individual elements of the two vectors.
+        The result of this function has elements that are the differences of
+        all the pairs of individual elements in the two argument vectors.
+
+        :param input_points:
+        :param test_points:
+        :return:
+        &#34;&#34;&#34;
+        # The data dimension should be 0 and we should work based on that.
+        tp_shape = test_points.shape  # should be the data dimension
+        ip_shape = input_points.shape  # should be the data dimension
+        #    test_points = test_points.reshape([-1,1])
+        # breakpoint()
+        input_points_repeated = input_points.repeat(tp_shape[0], 1, 1)
+        test_points_repeated = test_points.repeat(ip_shape[0], 1, 1)
+        # test_points_repeated_transpose = torch.einsum(&#39;ijk-&gt;jik&#39;,\
+        # test_points_repeated)
+        test_points_r_t = torch.einsum(&#34;ijk-&gt;jik&#34;, test_points_repeated)
+        vector_diffs = input_points_repeated - test_points_r_t  # data
+        return vector_diffs
+
+    def evaluate_kernel(self, data_differences):
+        &#34;&#34;&#34;This method should be overwritten to evaluate the function
+        for the kernel.
+        :param data_differences: a matrix of (x-x&#39;) points over which to
+                                 calculate the VCV matrix.
+        :return: the Gram matrix; the input matrix provided but evaluated by
+                                  the kernel function,
+        e.g. e^-(1/2 (x-x&#39;)Σ^-1 (x-x&#39;)&#39;)
+        &#34;&#34;&#34;
+        return NotImplementedError
+
+
+class SmoothExponentialKernel(StationaryKernel):
+    required_kernel_arguments = {
+        &#34;noise_parameter&#34;,
+        &#34;variance_parameter&#34;,
+        &#34;ard_parameter&#34;,
+    }
+
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        ard_inv = torch.inverse(ard)
+
+        try:
+            interim = torch.einsum(
+                &#34;ijk,kl,ijk-&gt;ij&#34;, data_differences, ard_inv, data_differences
+            )
+
+        except RuntimeError:
+            if data_differences.shape[2] != ard_inv.shape[0]:
+                print(&#34;Will add better error handling here later -&#34;)
+            #   at the moment it looks like\
+            #   the dimensions of the inverse and the tensor-difference matrix
+            #   do not match.&#34;)
+            breakpoint()
+
+        half_interim = -interim / 2
+        kernels = sigma * torch.exp(half_interim)
+        return kernels
+
+
+class ExponentialKernel(StationaryKernel):  # need to fix this matrix&#39;s &#39;n&#39;
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        theta = torch.pow(ard, 2)
+
+        # get the differences of the vectors for the kernel
+        kernels = sigma * torch.exp(
+            -torch.sum(torch.abs(data_differences), 1) / theta
+        )  # check this is correct
+        return kernels
+
+
+class RationalQuadraticKernel(StationaryKernel):
+    required_kernel_arguments = {
+        &#34;ard_parameter&#34;,
+        &#34;variance_parameter&#34;,
+        &#34;mixture_parameter&#34;,
+    }
+
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        alpha = self.kernel_args[&#34;mixture_parameter&#34;]
+        # theta = torch.pow(ard, 2)
+        ard_inv = torch.inverse(ard)
+
+        # print(&#34;in evaluate_kernel for RationalQuadratic&#34;)
+        interim = torch.einsum(
+            &#34;ijk,kl,ijk-&gt;ij&#34;, data_differences, ard_inv, data_differences
+        )
+
+        # get the differences of the vectors for the kernel
+        kernels = sigma * torch.pow((1 + interim / (2 * alpha)), -alpha)
+        return kernels
+
+
+class ConstantKernel(StationaryKernel):
+    def evaluate_kernel(self, data_differences):
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        kernels = sigma * torch.ones(data_differences.squeeze().shape)
+        return kernels
+
+
+class NoiseKernel(StationaryKernel):
+    def evaluate_kernel(self, data_differences):
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        kernels = sigma * torch.where(
+            data_differences.squeeze() == 0,
+            torch.ones(data_differences.squeeze().shape),
+            torch.zeros(data_differences.squeeze().shape),
+        )
+        return kernels
+
+
+class MercerKernel(StationaryKernel):
+    required_kernel_arguments = {&#34;ard_parameter&#34;, &#34;noise_parameter&#34;}
+
+    def __init__(self, m, basis: Basis, eigenvalues, kernel_args):
+        &#34;&#34;&#34;
+        Initialises a Mercer Kernel approximation.
+
+        The  Mercer Kernel approximation builds an approximate kernel by
+        utilising the Mercer expansion. If you have an eigensystem {λ_i, φ_i},
+        you can construct k(x_i,x_j) ~= Σλ_l φ_l(x_i) φ_l(x_j).
+
+        : param m: the number of terms in the summation, and the highest
+        degree of the basis functions used for approximating the kernel
+
+        :param basis function: a callable with signature (x, m, params) that
+        returns the value of the basis function for a given degree &#39;i&#39;,
+         at value &#39;x&#39;, with parameters &#39;params&#39;.
+
+        eigenvalue_function: a function with signature (m, params) producing a
+                             tensor the eigenvalues in shape (degree,
+                              dimension)
+
+        kernel_params: the parameters we will use to construct the trained
+                       kernel version
+        &#34;&#34;&#34;
+
+        self.m = m  # the degree of the approximation
+
+        # basis_function expected to have signature:
+        # (x:torch.Tensor, degree: int, basis_args: dict)
+        self.basis = basis
+
+        self.eigenvalues = eigenvalues
+        self.kernel_args = kernel_args
+
+    @staticmethod
+    def get_data_differences(input_points, test_points):
+        return input_points, test_points
+
+    def evaluate_kernel(self, data_differences):
+        &#34;&#34;&#34;
+        Returns the gram matrix of the kernel evaluated at a given input,
+        test point combination.
+
+
+        :param data_differences:
+        :return:
+        &#34;&#34;&#34;
+
+        input_points, test_points = data_differences
+
+        &#34;&#34;&#34;
+        The construction of the kernel approximation is done in stages.
+        The kernel is represented as:
+        Σ λn en(zi)en(zj)
+
+        In order to build this, first we build en(zi) and en(zj). These
+        are vectors of length {dimension} and they are essentially ωt ωτ&#39;
+        &#34;&#34;&#34;
+        # first, evaluate the eigenfunctions at the vector inputs
+        # so φ(input_points), φ(test_points)
+        # should be of size (input_size, degree), (test_size, degree)
+        input_ksi = self.get_ksi(input_points)
+        test_ksi = self.get_ksi(test_points).T
+        input_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+        test_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+
+        diag_l = torch.diag(self.eigenvalues)
+
+        intermediate_term = torch.mm(input_ksi, diag_l)
+
+        # transposing because I appear to have the shape wrong
+        kernel = torch.mm(intermediate_term, test_ksi).t()
+
+        # matrix = torch.zeros(input_ksi.shape[0], test_ksi.shape[1])
+        # for i,e in enumerate(self.eigenvalues):
+        #     matrix += e * torch.outer(input_ksi[:,i] , test_ksi[i, :])
+        return kernel
+
+    def get_ksi(self, input_points):
+        &#34;&#34;&#34;
+        Constructs and returns Ξ, which is the matrix whose rows are a
+        given degree of basis function, evaluated at the input points vector
+
+        specifically, Ξ is the Nxm matrix of the m basis functions
+        evaluated at N data points
+
+        : param input_points: the set of input points at which to
+        evaluate the basis functions
+        &#34;&#34;&#34;
+
+        if len(input_points.shape) &gt;= 1:
+            input_points = input_points.squeeze()
+        degree = self.m  # i.e. the degree of the approximation
+        ksi = torch.zeros([input_points.shape[0], degree])  # init tensor
+
+        # for deg in range(degree):
+        # ksi[:, deg] = self.basis_function(input_points,
+        # deg,
+        # self.kernel_args)
+
+        ksi = self.basis(input_points)
+
+        return ksi
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        &#34;&#34;&#34;
+        use the Sherman-Morrison-Woodbury Formula to get the matrix inverse
+        given the kernel matrix
+        The matrix inverse is built as σ^-2(Ι - Ξ(σ^2 Λ^-1  + Ξ&#39;Ξ)^(-1)Ξ&#39;)
+        &#34;&#34;&#34;
+        sigma_e = self.kernel_args[&#34;noise_parameter&#34;]  # get noise parameter
+
+        # inv_diag_l = torch.diag(1/self.eigenvalues)  # Λ^-1
+
+        ksi = self.get_ksi(input_points)  # Ξ
+        interim_inv = self.get_interim_matrix_inverse(input_points)
+
+        # 1/σ^2 (Ι - Ξ(Λ^-1 + Ξ&#39;Ξ)Ξ&#39;)
+        kernel_inv = (
+            1
+            / (sigma_e ** 2)
+            * (
+                torch.eye(input_points.shape[0])
+                - torch.mm(torch.mm(ksi, interim_inv), ksi.T)
+            )
+        )
+        return kernel_inv
+
+    def get_interim_matrix_inverse(self, input_points):
+        &#34;&#34;&#34;
+        Returns the (σ^2 Λ^-1 + Ξ&#39;Ξ) matrix as required in the kernel_inverse
+        method (and in general by the WSM formula).
+        &#34;&#34;&#34;
+        ksi = self.get_ksi(input_points)
+        sigma_e = self.kernel_args[&#34;noise_parameter&#34;]
+        inv_diag_l = torch.diag(1 / self.eigenvalues)  # Λ^-1
+        ksiksi = torch.mm(ksi.T, ksi)  # Ξ&#39;Ξ
+        # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)
+        interim_matrix = ksiksi + (sigma_e ** 2) * inv_diag_l
+        # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)^(-1)
+        interim_inv = torch.inverse(interim_matrix)
+        return interim_inv
+
+    def set_eigenvalues(self, new_eigenvalues):
+        &#34;&#34;&#34;
+        Allows for direct setting of the eigenvalues for the Mercer kernel
+        representation. This allows them to be trained/solved for externally
+        and then passed to a model for prediction.
+        &#34;&#34;&#34;
+        self.eigenvalues = new_eigenvalues
+
+        # fix infinite eigenvalues, for zero-d mercer eigenvalue inverses.
+        mask = torch.nonzero((self.eigenvalues.isinf()))
+        self.eigenvalues[mask] = 0
+        return
+
+    def get_eigenvalues(self):
+        &#34;&#34;&#34;
+        Getter method to recall the current values of the eigenvalues for the
+        Mercer kernel representation.
+        &#34;&#34;&#34;
+        return self.eigenvalues
+
+
+# Composite/exotic kernels
+class CompositeKernel(StationaryKernel):
+    def __init__(self, kernels):
+        &#34;&#34;&#34;
+        the CompositeKernel is a tool for combining kernels via either
+        summation or multiplication, since sums of kernels are kernels, as are
+        products of kernels. I think this makes kernels a ring (?)
+
+        Largely a WIP
+
+        :param kernels: an iterable containing kernels
+        &#34;&#34;&#34;
+        self.kernel_args = [kernel.kernel_args for kernel in kernels]
+        self.kernels = kernels
+
+    # def __add__(self, other):
+    #     new_kernel = CompositeKernel([self, other])
+    #     return new_kernel
+
+    def evaluate_kernel(self, data_differences):
+        # i.e. return something that is 2-d, i.e. a matrix
+        result = torch.zeros(data_differences.shape).squeeze()
+        for kernel in self.kernels:
+            new_kernel_value = kernel.evaluate_kernel(data_differences)
+            result += new_kernel_value
+
+        return result
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        # how will i do multiple kernels?
+        return super().kernel_inverse(input_points)
+
+    def get_params(self):
+        &#34;&#34;&#34;
+        Adapts the get_params method to handle the fact that it is composite.
+        :return:
+        &#34;&#34;&#34;
+        kernel_params = []
+        for kernel in self.kernels:
+            kernel_params.extend(kernel.get_params())  # essentially,
+            # concatenate the lists of  kernel parameters for each kernel in
+            # the composite kernel.
+        return kernel_params
+
+
+if __name__ == &#34;__main__&#34;:
+
+    # generate a kernel and show it as a heatmap
+    l_se = torch.Tensor([[2]])
+    sigma_se = torch.Tensor([3])
+    sigma_e = torch.Tensor([1])
+    epsilon = torch.Tensor([1])
+    lb = 0.0
+    ub = 10.0
+    chebyshev_args = {
+        &#34;upper_bound&#34;: torch.tensor(ub, dtype=torch.float32),
+        &#34;lower_bound&#34;: torch.tensor(lb, dtype=torch.float32),
+    }
+
+    mercer_args = {
+        &#34;ard_parameter&#34;: l_se,
+        &#34;variance_parameter&#34;: sigma_se,
+        &#34;noise_parameter&#34;: sigma_e,
+        &#34;precision_parameter&#34;: epsilon,
+    }
+
+    test_points = torch.linspace(lb + 0.01, ub - 0.01, 100)
+    for order in range(5, 75, 20):
+        basis = Basis(standard_chebyshev_basis, 1, order, chebyshev_args)
+        eigenvalues = smooth_exponential_eigenvalues(order, mercer_args)
+        kernel = MercerKernel(order, basis, eigenvalues, mercer_args)
+        result = kernel(test_points, test_points)
+        plt.imshow(result, cmap=&#34;viridis&#34;)
+        plt.show()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="mercergp.kernels.CompositeKernel"><code class="flex name class">
+<span>class <span class="ident">CompositeKernel</span></span>
+<span>(</span><span>kernels)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>the CompositeKernel is a tool for combining kernels via either
+summation or multiplication, since sums of kernels are kernels, as are
+products of kernels. I think this makes kernels a ring (?)</p>
+<p>Largely a WIP</p>
+<p>:param kernels: an iterable containing kernels</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CompositeKernel(StationaryKernel):
+    def __init__(self, kernels):
+        &#34;&#34;&#34;
+        the CompositeKernel is a tool for combining kernels via either
+        summation or multiplication, since sums of kernels are kernels, as are
+        products of kernels. I think this makes kernels a ring (?)
+
+        Largely a WIP
+
+        :param kernels: an iterable containing kernels
+        &#34;&#34;&#34;
+        self.kernel_args = [kernel.kernel_args for kernel in kernels]
+        self.kernels = kernels
+
+    # def __add__(self, other):
+    #     new_kernel = CompositeKernel([self, other])
+    #     return new_kernel
+
+    def evaluate_kernel(self, data_differences):
+        # i.e. return something that is 2-d, i.e. a matrix
+        result = torch.zeros(data_differences.shape).squeeze()
+        for kernel in self.kernels:
+            new_kernel_value = kernel.evaluate_kernel(data_differences)
+            result += new_kernel_value
+
+        return result
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        # how will i do multiple kernels?
+        return super().kernel_inverse(input_points)
+
+    def get_params(self):
+        &#34;&#34;&#34;
+        Adapts the get_params method to handle the fact that it is composite.
+        :return:
+        &#34;&#34;&#34;
+        kernel_params = []
+        for kernel in self.kernels:
+            kernel_params.extend(kernel.get_params())  # essentially,
+            # concatenate the lists of  kernel parameters for each kernel in
+            # the composite kernel.
+        return kernel_params</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="mercergp.kernels.CompositeKernel.get_params"><code class="name flex">
+<span>def <span class="ident">get_params</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adapts the get_params method to handle the fact that it is composite.
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_params(self):
+    &#34;&#34;&#34;
+    Adapts the get_params method to handle the fact that it is composite.
+    :return:
+    &#34;&#34;&#34;
+    kernel_params = []
+    for kernel in self.kernels:
+        kernel_params.extend(kernel.get_params())  # essentially,
+        # concatenate the lists of  kernel parameters for each kernel in
+        # the composite kernel.
+    return kernel_params</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.ConstantKernel"><code class="flex name class">
+<span>class <span class="ident">ConstantKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ConstantKernel(StationaryKernel):
+    def evaluate_kernel(self, data_differences):
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        kernels = sigma * torch.ones(data_differences.squeeze().shape)
+        return kernels</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.ExponentialKernel"><code class="flex name class">
+<span>class <span class="ident">ExponentialKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ExponentialKernel(StationaryKernel):  # need to fix this matrix&#39;s &#39;n&#39;
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        theta = torch.pow(ard, 2)
+
+        # get the differences of the vectors for the kernel
+        kernels = sigma * torch.exp(
+            -torch.sum(torch.abs(data_differences), 1) / theta
+        )  # check this is correct
+        return kernels</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.KernelError"><code class="flex name class">
+<span>class <span class="ident">KernelError</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class KernelError(Exception):
+    def __init__(self):
+        print(&#34;No Available Kernel Specified&#34;)
+        pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.MercerKernel"><code class="flex name class">
+<span>class <span class="ident">MercerKernel</span></span>
+<span>(</span><span>m, basis: ortho.basis_functions.Basis, eigenvalues, kernel_args)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises a Mercer Kernel approximation.</p>
+<dl>
+<dt>The
+Mercer Kernel approximation builds an approximate kernel by</dt>
+<dt>utilising the Mercer expansion. If you have an eigensystem {λ_i, φ_i},</dt>
+<dt>you can construct k(x_i,x_j) ~= Σλ_l φ_l(x_i) φ_l(x_j).</dt>
+<dd>
+<p>param m: the number of terms in the summation, and the highest
+degree of the basis functions used for approximating the kernel</p>
+</dd>
+</dl>
+<p>:param basis function: a callable with signature (x, m, params) that
+returns the value of the basis function for a given degree 'i',
+at value 'x', with parameters 'params'.</p>
+<p>eigenvalue_function: a function with signature (m, params) producing a
+tensor the eigenvalues in shape (degree,
+dimension)</p>
+<p>kernel_params: the parameters we will use to construct the trained
+kernel version</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MercerKernel(StationaryKernel):
+    required_kernel_arguments = {&#34;ard_parameter&#34;, &#34;noise_parameter&#34;}
+
+    def __init__(self, m, basis: Basis, eigenvalues, kernel_args):
+        &#34;&#34;&#34;
+        Initialises a Mercer Kernel approximation.
+
+        The  Mercer Kernel approximation builds an approximate kernel by
+        utilising the Mercer expansion. If you have an eigensystem {λ_i, φ_i},
+        you can construct k(x_i,x_j) ~= Σλ_l φ_l(x_i) φ_l(x_j).
+
+        : param m: the number of terms in the summation, and the highest
+        degree of the basis functions used for approximating the kernel
+
+        :param basis function: a callable with signature (x, m, params) that
+        returns the value of the basis function for a given degree &#39;i&#39;,
+         at value &#39;x&#39;, with parameters &#39;params&#39;.
+
+        eigenvalue_function: a function with signature (m, params) producing a
+                             tensor the eigenvalues in shape (degree,
+                              dimension)
+
+        kernel_params: the parameters we will use to construct the trained
+                       kernel version
+        &#34;&#34;&#34;
+
+        self.m = m  # the degree of the approximation
+
+        # basis_function expected to have signature:
+        # (x:torch.Tensor, degree: int, basis_args: dict)
+        self.basis = basis
+
+        self.eigenvalues = eigenvalues
+        self.kernel_args = kernel_args
+
+    @staticmethod
+    def get_data_differences(input_points, test_points):
+        return input_points, test_points
+
+    def evaluate_kernel(self, data_differences):
+        &#34;&#34;&#34;
+        Returns the gram matrix of the kernel evaluated at a given input,
+        test point combination.
+
+
+        :param data_differences:
+        :return:
+        &#34;&#34;&#34;
+
+        input_points, test_points = data_differences
+
+        &#34;&#34;&#34;
+        The construction of the kernel approximation is done in stages.
+        The kernel is represented as:
+        Σ λn en(zi)en(zj)
+
+        In order to build this, first we build en(zi) and en(zj). These
+        are vectors of length {dimension} and they are essentially ωt ωτ&#39;
+        &#34;&#34;&#34;
+        # first, evaluate the eigenfunctions at the vector inputs
+        # so φ(input_points), φ(test_points)
+        # should be of size (input_size, degree), (test_size, degree)
+        input_ksi = self.get_ksi(input_points)
+        test_ksi = self.get_ksi(test_points).T
+        input_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+        test_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+
+        diag_l = torch.diag(self.eigenvalues)
+
+        intermediate_term = torch.mm(input_ksi, diag_l)
+
+        # transposing because I appear to have the shape wrong
+        kernel = torch.mm(intermediate_term, test_ksi).t()
+
+        # matrix = torch.zeros(input_ksi.shape[0], test_ksi.shape[1])
+        # for i,e in enumerate(self.eigenvalues):
+        #     matrix += e * torch.outer(input_ksi[:,i] , test_ksi[i, :])
+        return kernel
+
+    def get_ksi(self, input_points):
+        &#34;&#34;&#34;
+        Constructs and returns Ξ, which is the matrix whose rows are a
+        given degree of basis function, evaluated at the input points vector
+
+        specifically, Ξ is the Nxm matrix of the m basis functions
+        evaluated at N data points
+
+        : param input_points: the set of input points at which to
+        evaluate the basis functions
+        &#34;&#34;&#34;
+
+        if len(input_points.shape) &gt;= 1:
+            input_points = input_points.squeeze()
+        degree = self.m  # i.e. the degree of the approximation
+        ksi = torch.zeros([input_points.shape[0], degree])  # init tensor
+
+        # for deg in range(degree):
+        # ksi[:, deg] = self.basis_function(input_points,
+        # deg,
+        # self.kernel_args)
+
+        ksi = self.basis(input_points)
+
+        return ksi
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        &#34;&#34;&#34;
+        use the Sherman-Morrison-Woodbury Formula to get the matrix inverse
+        given the kernel matrix
+        The matrix inverse is built as σ^-2(Ι - Ξ(σ^2 Λ^-1  + Ξ&#39;Ξ)^(-1)Ξ&#39;)
+        &#34;&#34;&#34;
+        sigma_e = self.kernel_args[&#34;noise_parameter&#34;]  # get noise parameter
+
+        # inv_diag_l = torch.diag(1/self.eigenvalues)  # Λ^-1
+
+        ksi = self.get_ksi(input_points)  # Ξ
+        interim_inv = self.get_interim_matrix_inverse(input_points)
+
+        # 1/σ^2 (Ι - Ξ(Λ^-1 + Ξ&#39;Ξ)Ξ&#39;)
+        kernel_inv = (
+            1
+            / (sigma_e ** 2)
+            * (
+                torch.eye(input_points.shape[0])
+                - torch.mm(torch.mm(ksi, interim_inv), ksi.T)
+            )
+        )
+        return kernel_inv
+
+    def get_interim_matrix_inverse(self, input_points):
+        &#34;&#34;&#34;
+        Returns the (σ^2 Λ^-1 + Ξ&#39;Ξ) matrix as required in the kernel_inverse
+        method (and in general by the WSM formula).
+        &#34;&#34;&#34;
+        ksi = self.get_ksi(input_points)
+        sigma_e = self.kernel_args[&#34;noise_parameter&#34;]
+        inv_diag_l = torch.diag(1 / self.eigenvalues)  # Λ^-1
+        ksiksi = torch.mm(ksi.T, ksi)  # Ξ&#39;Ξ
+        # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)
+        interim_matrix = ksiksi + (sigma_e ** 2) * inv_diag_l
+        # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)^(-1)
+        interim_inv = torch.inverse(interim_matrix)
+        return interim_inv
+
+    def set_eigenvalues(self, new_eigenvalues):
+        &#34;&#34;&#34;
+        Allows for direct setting of the eigenvalues for the Mercer kernel
+        representation. This allows them to be trained/solved for externally
+        and then passed to a model for prediction.
+        &#34;&#34;&#34;
+        self.eigenvalues = new_eigenvalues
+
+        # fix infinite eigenvalues, for zero-d mercer eigenvalue inverses.
+        mask = torch.nonzero((self.eigenvalues.isinf()))
+        self.eigenvalues[mask] = 0
+        return
+
+    def get_eigenvalues(self):
+        &#34;&#34;&#34;
+        Getter method to recall the current values of the eigenvalues for the
+        Mercer kernel representation.
+        &#34;&#34;&#34;
+        return self.eigenvalues</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="mercergp.kernels.MercerKernel.evaluate_kernel"><code class="name flex">
+<span>def <span class="ident">evaluate_kernel</span></span>(<span>self, data_differences)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the gram matrix of the kernel evaluated at a given input,
+test point combination.</p>
+<p>:param data_differences:
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def evaluate_kernel(self, data_differences):
+    &#34;&#34;&#34;
+    Returns the gram matrix of the kernel evaluated at a given input,
+    test point combination.
+
+
+    :param data_differences:
+    :return:
+    &#34;&#34;&#34;
+
+    input_points, test_points = data_differences
+
+    &#34;&#34;&#34;
+    The construction of the kernel approximation is done in stages.
+    The kernel is represented as:
+    Σ λn en(zi)en(zj)
+
+    In order to build this, first we build en(zi) and en(zj). These
+    are vectors of length {dimension} and they are essentially ωt ωτ&#39;
+    &#34;&#34;&#34;
+    # first, evaluate the eigenfunctions at the vector inputs
+    # so φ(input_points), φ(test_points)
+    # should be of size (input_size, degree), (test_size, degree)
+    input_ksi = self.get_ksi(input_points)
+    test_ksi = self.get_ksi(test_points).T
+    input_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+    test_ksi *= self.kernel_args[&#34;noise_parameter&#34;]
+
+    diag_l = torch.diag(self.eigenvalues)
+
+    intermediate_term = torch.mm(input_ksi, diag_l)
+
+    # transposing because I appear to have the shape wrong
+    kernel = torch.mm(intermediate_term, test_ksi).t()
+
+    # matrix = torch.zeros(input_ksi.shape[0], test_ksi.shape[1])
+    # for i,e in enumerate(self.eigenvalues):
+    #     matrix += e * torch.outer(input_ksi[:,i] , test_ksi[i, :])
+    return kernel</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.MercerKernel.get_eigenvalues"><code class="name flex">
+<span>def <span class="ident">get_eigenvalues</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Getter method to recall the current values of the eigenvalues for the
+Mercer kernel representation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_eigenvalues(self):
+    &#34;&#34;&#34;
+    Getter method to recall the current values of the eigenvalues for the
+    Mercer kernel representation.
+    &#34;&#34;&#34;
+    return self.eigenvalues</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.MercerKernel.get_interim_matrix_inverse"><code class="name flex">
+<span>def <span class="ident">get_interim_matrix_inverse</span></span>(<span>self, input_points)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the (σ^2 Λ^-1 + Ξ'Ξ) matrix as required in the kernel_inverse
+method (and in general by the WSM formula).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_interim_matrix_inverse(self, input_points):
+    &#34;&#34;&#34;
+    Returns the (σ^2 Λ^-1 + Ξ&#39;Ξ) matrix as required in the kernel_inverse
+    method (and in general by the WSM formula).
+    &#34;&#34;&#34;
+    ksi = self.get_ksi(input_points)
+    sigma_e = self.kernel_args[&#34;noise_parameter&#34;]
+    inv_diag_l = torch.diag(1 / self.eigenvalues)  # Λ^-1
+    ksiksi = torch.mm(ksi.T, ksi)  # Ξ&#39;Ξ
+    # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)
+    interim_matrix = ksiksi + (sigma_e ** 2) * inv_diag_l
+    # ( σ^(2) Λ^-1 + Ξ&#39;Ξ)^(-1)
+    interim_inv = torch.inverse(interim_matrix)
+    return interim_inv</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.MercerKernel.get_ksi"><code class="name flex">
+<span>def <span class="ident">get_ksi</span></span>(<span>self, input_points)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Constructs and returns Ξ, which is the matrix whose rows are a
+given degree of basis function, evaluated at the input points vector</p>
+<dl>
+<dt>specifically, Ξ is the Nxm matrix of the m basis functions</dt>
+<dt>evaluated at N data points</dt>
+<dd>
+<p>param input_points: the set of input points at which to
+evaluate the basis functions</p>
+</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_ksi(self, input_points):
+    &#34;&#34;&#34;
+    Constructs and returns Ξ, which is the matrix whose rows are a
+    given degree of basis function, evaluated at the input points vector
+
+    specifically, Ξ is the Nxm matrix of the m basis functions
+    evaluated at N data points
+
+    : param input_points: the set of input points at which to
+    evaluate the basis functions
+    &#34;&#34;&#34;
+
+    if len(input_points.shape) &gt;= 1:
+        input_points = input_points.squeeze()
+    degree = self.m  # i.e. the degree of the approximation
+    ksi = torch.zeros([input_points.shape[0], degree])  # init tensor
+
+    # for deg in range(degree):
+    # ksi[:, deg] = self.basis_function(input_points,
+    # deg,
+    # self.kernel_args)
+
+    ksi = self.basis(input_points)
+
+    return ksi</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.MercerKernel.kernel_inverse"><code class="name flex">
+<span>def <span class="ident">kernel_inverse</span></span>(<span>self, input_points: torch.Tensor)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>use the Sherman-Morrison-Woodbury Formula to get the matrix inverse
+given the kernel matrix
+The matrix inverse is built as σ^-2(Ι - Ξ(σ^2 Λ^-1
++ Ξ'Ξ)^(-1)Ξ')</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def kernel_inverse(self, input_points: torch.Tensor):
+    &#34;&#34;&#34;
+    use the Sherman-Morrison-Woodbury Formula to get the matrix inverse
+    given the kernel matrix
+    The matrix inverse is built as σ^-2(Ι - Ξ(σ^2 Λ^-1  + Ξ&#39;Ξ)^(-1)Ξ&#39;)
+    &#34;&#34;&#34;
+    sigma_e = self.kernel_args[&#34;noise_parameter&#34;]  # get noise parameter
+
+    # inv_diag_l = torch.diag(1/self.eigenvalues)  # Λ^-1
+
+    ksi = self.get_ksi(input_points)  # Ξ
+    interim_inv = self.get_interim_matrix_inverse(input_points)
+
+    # 1/σ^2 (Ι - Ξ(Λ^-1 + Ξ&#39;Ξ)Ξ&#39;)
+    kernel_inv = (
+        1
+        / (sigma_e ** 2)
+        * (
+            torch.eye(input_points.shape[0])
+            - torch.mm(torch.mm(ksi, interim_inv), ksi.T)
+        )
+    )
+    return kernel_inv</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.MercerKernel.set_eigenvalues"><code class="name flex">
+<span>def <span class="ident">set_eigenvalues</span></span>(<span>self, new_eigenvalues)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Allows for direct setting of the eigenvalues for the Mercer kernel
+representation. This allows them to be trained/solved for externally
+and then passed to a model for prediction.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_eigenvalues(self, new_eigenvalues):
+    &#34;&#34;&#34;
+    Allows for direct setting of the eigenvalues for the Mercer kernel
+    representation. This allows them to be trained/solved for externally
+    and then passed to a model for prediction.
+    &#34;&#34;&#34;
+    self.eigenvalues = new_eigenvalues
+
+    # fix infinite eigenvalues, for zero-d mercer eigenvalue inverses.
+    mask = torch.nonzero((self.eigenvalues.isinf()))
+    self.eigenvalues[mask] = 0
+    return</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.NoiseKernel"><code class="flex name class">
+<span>class <span class="ident">NoiseKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NoiseKernel(StationaryKernel):
+    def evaluate_kernel(self, data_differences):
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        kernels = sigma * torch.where(
+            data_differences.squeeze() == 0,
+            torch.ones(data_differences.squeeze().shape),
+            torch.zeros(data_differences.squeeze().shape),
+        )
+        return kernels</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.RationalQuadraticKernel"><code class="flex name class">
+<span>class <span class="ident">RationalQuadraticKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RationalQuadraticKernel(StationaryKernel):
+    required_kernel_arguments = {
+        &#34;ard_parameter&#34;,
+        &#34;variance_parameter&#34;,
+        &#34;mixture_parameter&#34;,
+    }
+
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        alpha = self.kernel_args[&#34;mixture_parameter&#34;]
+        # theta = torch.pow(ard, 2)
+        ard_inv = torch.inverse(ard)
+
+        # print(&#34;in evaluate_kernel for RationalQuadratic&#34;)
+        interim = torch.einsum(
+            &#34;ijk,kl,ijk-&gt;ij&#34;, data_differences, ard_inv, data_differences
+        )
+
+        # get the differences of the vectors for the kernel
+        kernels = sigma * torch.pow((1 + interim / (2 * alpha)), -alpha)
+        return kernels</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.SmoothExponentialKernel"><code class="flex name class">
+<span>class <span class="ident">SmoothExponentialKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SmoothExponentialKernel(StationaryKernel):
+    required_kernel_arguments = {
+        &#34;noise_parameter&#34;,
+        &#34;variance_parameter&#34;,
+        &#34;ard_parameter&#34;,
+    }
+
+    def evaluate_kernel(self, data_differences):
+        # parameters
+        ard = self.kernel_args[&#34;ard_parameter&#34;]
+        sigma = self.kernel_args[&#34;variance_parameter&#34;]
+        ard_inv = torch.inverse(ard)
+
+        try:
+            interim = torch.einsum(
+                &#34;ijk,kl,ijk-&gt;ij&#34;, data_differences, ard_inv, data_differences
+            )
+
+        except RuntimeError:
+            if data_differences.shape[2] != ard_inv.shape[0]:
+                print(&#34;Will add better error handling here later -&#34;)
+            #   at the moment it looks like\
+            #   the dimensions of the inverse and the tensor-difference matrix
+            #   do not match.&#34;)
+            breakpoint()
+
+        half_interim = -interim / 2
+        kernels = sigma * torch.exp(half_interim)
+        return kernels</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="mercergp.kernels.StationaryKernel"><code class="flex name class">
+<span>class <span class="ident">StationaryKernel</span></span>
+<span>(</span><span>kernel_args: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialises the kernel</p>
+<p>when subclassing, append to required_args the necessary parameters.</p>
+<p>all elements of the dict kernel_args should be torch.Tensors</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class StationaryKernel:
+    required_kernel_arguments = {&#34;noise_parameter&#34;, &#34;variance_parameter&#34;}
+
+    &#34;&#34;&#34;
+    A base class for stationary kernels.
+
+    Stationary kernels depend only on |x-x&#39;|. It contains a method for
+    generating a blank gram matrix  w/ data (ie, X-X&#39;) which is then
+    evaluated at the kernel function (so, exp(-(X-X&#39;)(X-X&#39;)&#39; / l^2)&#34;&#34;&#34;
+
+    def __init__(self, kernel_args: dict):
+        &#34;&#34;&#34;Initialises the kernel
+
+        when subclassing, append to required_args the necessary parameters.
+
+        all elements of the dict kernel_args should be torch.Tensors
+        &#34;&#34;&#34;
+        self.kernel_args = kernel_args
+        assert set(kernel_args.keys()).issuperset(
+            self.required_kernel_arguments
+        )
+
+    def __add__(self, other):
+        new_kernel = CompositeKernel([self, other])
+        return new_kernel
+
+    def __call__(self, input_points: torch.Tensor, test_points: torch.Tensor):
+        &#34;&#34;&#34;returns a Tensor representing the Gram matrix of the kernel
+        function evaluated at the differences between input and test points.
+
+        Tensor shape: bxnxm
+
+        b: batch length
+        n: dimension count (so n=2 for 2-d data)
+        m: data length
+        for each tensor(input or test), the last dimension should
+        be the length of the data&#34;&#34;&#34;
+        input_points = self._validate_shape(input_points)
+        test_points = self._validate_shape(test_points)
+        data_differences = self.get_data_differences(input_points, test_points)
+        evaluated_kernel = self.evaluate_kernel(data_differences)
+        return evaluated_kernel
+
+    def _validate_shape(self, points):
+        &#34;&#34;&#34;
+        Validates the shape of potential input points to be N x 1 as
+        opposed to bare N.
+        &#34;&#34;&#34;
+        if len(points.shape) == 1:
+            return points.unsqueeze(1)
+        else:
+            return points
+
+    def kernel_inverse(self, input_points: torch.Tensor):
+        &#34;&#34;&#34;
+        Returns the kernel function inverse evaluated at the given input
+        points. It receives only one tensor as input since the kernel inverse
+        is square.
+        &#34;&#34;&#34;
+        kernel = self(input_points, input_points)
+        kernel += self.kernel_args[&#34;noise_parameter&#34;] ** 2 * torch.eye(
+            input_points.shape[0]
+        )  # sigma_e
+        return torch.inverse(kernel)
+
+    def get_params(self):
+        # kernel_params = [self.kernel_args[param] for param in
+        # self.kernel_args]
+        return self.kernel_args
+
+    @staticmethod
+    def get_data_differences(input_points, test_points):
+        &#34;&#34;&#34;
+        Creates the &#39;data-differences&#39; matrix made up of input points and test
+        points, where input is x, test points are y;
+        |x1-y1  x1-y2 x1-y3 ... |
+        |x2-y1  x2-y2 x2-y3 ... |
+        |   .                   |
+        |   :                   |
+
+        This allows one to make:the input-point (variance-covariance) block of
+        the kernel; the input-test point (covariance) block; and the test-point
+        (variance-covariance) block of the Gram matrix.
+
+        Perhaps this operation could be called the outer differences following
+        the outer product being a matrix/tensor whose elements are the products
+        of all the pairs of individual elements of the two vectors.
+        The result of this function has elements that are the differences of
+        all the pairs of individual elements in the two argument vectors.
+
+        :param input_points:
+        :param test_points:
+        :return:
+        &#34;&#34;&#34;
+        # The data dimension should be 0 and we should work based on that.
+        tp_shape = test_points.shape  # should be the data dimension
+        ip_shape = input_points.shape  # should be the data dimension
+        #    test_points = test_points.reshape([-1,1])
+        # breakpoint()
+        input_points_repeated = input_points.repeat(tp_shape[0], 1, 1)
+        test_points_repeated = test_points.repeat(ip_shape[0], 1, 1)
+        # test_points_repeated_transpose = torch.einsum(&#39;ijk-&gt;jik&#39;,\
+        # test_points_repeated)
+        test_points_r_t = torch.einsum(&#34;ijk-&gt;jik&#34;, test_points_repeated)
+        vector_diffs = input_points_repeated - test_points_r_t  # data
+        return vector_diffs
+
+    def evaluate_kernel(self, data_differences):
+        &#34;&#34;&#34;This method should be overwritten to evaluate the function
+        for the kernel.
+        :param data_differences: a matrix of (x-x&#39;) points over which to
+                                 calculate the VCV matrix.
+        :return: the Gram matrix; the input matrix provided but evaluated by
+                                  the kernel function,
+        e.g. e^-(1/2 (x-x&#39;)Σ^-1 (x-x&#39;)&#39;)
+        &#34;&#34;&#34;
+        return NotImplementedError</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="mercergp.kernels.CompositeKernel" href="#mercergp.kernels.CompositeKernel">CompositeKernel</a></li>
+<li><a title="mercergp.kernels.ConstantKernel" href="#mercergp.kernels.ConstantKernel">ConstantKernel</a></li>
+<li><a title="mercergp.kernels.ExponentialKernel" href="#mercergp.kernels.ExponentialKernel">ExponentialKernel</a></li>
+<li><a title="mercergp.kernels.MercerKernel" href="#mercergp.kernels.MercerKernel">MercerKernel</a></li>
+<li><a title="mercergp.kernels.NoiseKernel" href="#mercergp.kernels.NoiseKernel">NoiseKernel</a></li>
+<li><a title="mercergp.kernels.RationalQuadraticKernel" href="#mercergp.kernels.RationalQuadraticKernel">RationalQuadraticKernel</a></li>
+<li><a title="mercergp.kernels.SmoothExponentialKernel" href="#mercergp.kernels.SmoothExponentialKernel">SmoothExponentialKernel</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="mercergp.kernels.StationaryKernel.required_kernel_arguments"><code class="name">var <span class="ident">required_kernel_arguments</span></code></dt>
+<dd>
+<div class="desc"><p>A base class for stationary kernels.</p>
+<p>Stationary kernels depend only on |x-x'|. It contains a method for
+generating a blank gram matrix
+w/ data (ie, X-X') which is then
+evaluated at the kernel function (so, exp(-(X-X')(X-X')' / l^2)</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="mercergp.kernels.StationaryKernel.get_data_differences"><code class="name flex">
+<span>def <span class="ident">get_data_differences</span></span>(<span>input_points, test_points)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates the 'data-differences' matrix made up of input points and test
+points, where input is x, test points are y;
+|x1-y1
+x1-y2 x1-y3 &hellip; |
+|x2-y1
+x2-y2 x2-y3 &hellip; |
+|
+.
+|
+|
+:
+|</p>
+<p>This allows one to make:the input-point (variance-covariance) block of
+the kernel; the input-test point (covariance) block; and the test-point
+(variance-covariance) block of the Gram matrix.</p>
+<p>Perhaps this operation could be called the outer differences following
+the outer product being a matrix/tensor whose elements are the products
+of all the pairs of individual elements of the two vectors.
+The result of this function has elements that are the differences of
+all the pairs of individual elements in the two argument vectors.</p>
+<p>:param input_points:
+:param test_points:
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def get_data_differences(input_points, test_points):
+    &#34;&#34;&#34;
+    Creates the &#39;data-differences&#39; matrix made up of input points and test
+    points, where input is x, test points are y;
+    |x1-y1  x1-y2 x1-y3 ... |
+    |x2-y1  x2-y2 x2-y3 ... |
+    |   .                   |
+    |   :                   |
+
+    This allows one to make:the input-point (variance-covariance) block of
+    the kernel; the input-test point (covariance) block; and the test-point
+    (variance-covariance) block of the Gram matrix.
+
+    Perhaps this operation could be called the outer differences following
+    the outer product being a matrix/tensor whose elements are the products
+    of all the pairs of individual elements of the two vectors.
+    The result of this function has elements that are the differences of
+    all the pairs of individual elements in the two argument vectors.
+
+    :param input_points:
+    :param test_points:
+    :return:
+    &#34;&#34;&#34;
+    # The data dimension should be 0 and we should work based on that.
+    tp_shape = test_points.shape  # should be the data dimension
+    ip_shape = input_points.shape  # should be the data dimension
+    #    test_points = test_points.reshape([-1,1])
+    # breakpoint()
+    input_points_repeated = input_points.repeat(tp_shape[0], 1, 1)
+    test_points_repeated = test_points.repeat(ip_shape[0], 1, 1)
+    # test_points_repeated_transpose = torch.einsum(&#39;ijk-&gt;jik&#39;,\
+    # test_points_repeated)
+    test_points_r_t = torch.einsum(&#34;ijk-&gt;jik&#34;, test_points_repeated)
+    vector_diffs = input_points_repeated - test_points_r_t  # data
+    return vector_diffs</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="mercergp.kernels.StationaryKernel.evaluate_kernel"><code class="name flex">
+<span>def <span class="ident">evaluate_kernel</span></span>(<span>self, data_differences)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This method should be overwritten to evaluate the function
+for the kernel.
+:param data_differences: a matrix of (x-x') points over which to
+calculate the VCV matrix.
+:return: the Gram matrix; the input matrix provided but evaluated by
+the kernel function,
+e.g. e^-(1/2 (x-x')Σ^-1 (x-x')')</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def evaluate_kernel(self, data_differences):
+    &#34;&#34;&#34;This method should be overwritten to evaluate the function
+    for the kernel.
+    :param data_differences: a matrix of (x-x&#39;) points over which to
+                             calculate the VCV matrix.
+    :return: the Gram matrix; the input matrix provided but evaluated by
+                              the kernel function,
+    e.g. e^-(1/2 (x-x&#39;)Σ^-1 (x-x&#39;)&#39;)
+    &#34;&#34;&#34;
+    return NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.StationaryKernel.get_params"><code class="name flex">
+<span>def <span class="ident">get_params</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_params(self):
+    # kernel_params = [self.kernel_args[param] for param in
+    # self.kernel_args]
+    return self.kernel_args</code></pre>
+</details>
+</dd>
+<dt id="mercergp.kernels.StationaryKernel.kernel_inverse"><code class="name flex">
+<span>def <span class="ident">kernel_inverse</span></span>(<span>self, input_points: torch.Tensor)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the kernel function inverse evaluated at the given input
+points. It receives only one tensor as input since the kernel inverse
+is square.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def kernel_inverse(self, input_points: torch.Tensor):
+    &#34;&#34;&#34;
+    Returns the kernel function inverse evaluated at the given input
+    points. It receives only one tensor as input since the kernel inverse
+    is square.
+    &#34;&#34;&#34;
+    kernel = self(input_points, input_points)
+    kernel += self.kernel_args[&#34;noise_parameter&#34;] ** 2 * torch.eye(
+        input_points.shape[0]
+    )  # sigma_e
+    return torch.inverse(kernel)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="mercergp.kernels.UpdateError"><code class="flex name class">
+<span>class <span class="ident">UpdateError</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UpdateError(Exception):
+    def __init__(self):
+        print(&#34;Update vectors not of same length&#34;)
+        pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="mercergp" href="index.html">mercergp</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="mercergp.kernels.CompositeKernel" href="#mercergp.kernels.CompositeKernel">CompositeKernel</a></code></h4>
+<ul class="">
+<li><code><a title="mercergp.kernels.CompositeKernel.get_params" href="#mercergp.kernels.CompositeKernel.get_params">get_params</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.ConstantKernel" href="#mercergp.kernels.ConstantKernel">ConstantKernel</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.ExponentialKernel" href="#mercergp.kernels.ExponentialKernel">ExponentialKernel</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.KernelError" href="#mercergp.kernels.KernelError">KernelError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.MercerKernel" href="#mercergp.kernels.MercerKernel">MercerKernel</a></code></h4>
+<ul class="">
+<li><code><a title="mercergp.kernels.MercerKernel.evaluate_kernel" href="#mercergp.kernels.MercerKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.MercerKernel.get_eigenvalues" href="#mercergp.kernels.MercerKernel.get_eigenvalues">get_eigenvalues</a></code></li>
+<li><code><a title="mercergp.kernels.MercerKernel.get_interim_matrix_inverse" href="#mercergp.kernels.MercerKernel.get_interim_matrix_inverse">get_interim_matrix_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.MercerKernel.get_ksi" href="#mercergp.kernels.MercerKernel.get_ksi">get_ksi</a></code></li>
+<li><code><a title="mercergp.kernels.MercerKernel.kernel_inverse" href="#mercergp.kernels.MercerKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.MercerKernel.set_eigenvalues" href="#mercergp.kernels.MercerKernel.set_eigenvalues">set_eigenvalues</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.NoiseKernel" href="#mercergp.kernels.NoiseKernel">NoiseKernel</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.RationalQuadraticKernel" href="#mercergp.kernels.RationalQuadraticKernel">RationalQuadraticKernel</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.SmoothExponentialKernel" href="#mercergp.kernels.SmoothExponentialKernel">SmoothExponentialKernel</a></code></h4>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.StationaryKernel" href="#mercergp.kernels.StationaryKernel">StationaryKernel</a></code></h4>
+<ul class="">
+<li><code><a title="mercergp.kernels.StationaryKernel.evaluate_kernel" href="#mercergp.kernels.StationaryKernel.evaluate_kernel">evaluate_kernel</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_data_differences" href="#mercergp.kernels.StationaryKernel.get_data_differences">get_data_differences</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.get_params" href="#mercergp.kernels.StationaryKernel.get_params">get_params</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.kernel_inverse" href="#mercergp.kernels.StationaryKernel.kernel_inverse">kernel_inverse</a></code></li>
+<li><code><a title="mercergp.kernels.StationaryKernel.required_kernel_arguments" href="#mercergp.kernels.StationaryKernel.required_kernel_arguments">required_kernel_arguments</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="mercergp.kernels.UpdateError" href="#mercergp.kernels.UpdateError">UpdateError</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

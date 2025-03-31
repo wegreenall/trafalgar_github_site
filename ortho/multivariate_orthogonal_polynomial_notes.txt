@@ -1,0 +1,288 @@
+# multivariate.py
+
+"""
+In this  script we will implement the multivariate orthogonal polynomial
+calculation method of Liu and Narayan(2022).
+
+Hopefully this will aid in its understanding.
+
+From the paper:
+
+    It is well known even in the multivariate setting that stuch families of
+    polynomials satisfy three-term recurrence relations, which are commonly
+    exploited for stable evaluation and  manipulation of such polynomials.
+    Identification or numerical approximation of the coefficients in such
+    relations is therefore of great importance, and in the unvariate setting
+    many algorithms for accomplishing such approximations exist. Such
+    procedures are absent in the multivariate setting; This paper provides one
+    algorithmic solution to fill this gap.
+
+    [...] even computational identification of an orthonormal polynomial basis
+    is challenging, let alone computation of recurrence matrices. Although
+    computing moments with respect to fairly general mutlivariate measures μ is
+    certainly an open challenge, it is not the focus of this article. We focus
+    on the separate, open challenge of computing recurrence coefficients
+    (allowing stable evaluation of multivariate polynoimals) given the ability
+    to compute moments.
+
+The paper presents the Multivariate Stieltjes procedure.
+They demonstrate the stability compared to Gram-Schmidt orthogonalisation.
+
+
+    Sections in the paper:
+        2.1: review of univariate case.
+        2.2: three-term recurrence for the multivariate case
+        3:   Description of a canonical basis for direct evaluation of
+             multivariate orthogonal polynomials.
+        4:   we show that if μ is tensorial, then a tensor product basis is in 
+             fact a canonical basis.
+        5:   A direct procedure for orthonormalisation given polynomial moments.
+        
+We  use the standard multi-index notation in $d \in \mathbb{N}$ dimensions.
+
+a multi index $\alpha$ is denoted by $\alpha = (\alpha_1, \alpha_2, \ldots,
+                                                \alpha_d) \in \mathbb{N}^d_0$.
+
+For $\alpha \in \mathbb{N}^d$, we write monomials as 
+    $\mathbf{x}^\alpha = x_1^{\alpha_1} x_2^{\alpha_2} \ldots x_d^{\alpha_d}$.
+
+The space of $d$-variate polynomials of exactly degree $n$ \in $\mathbb{N}$ is denoted by 
+        $$\mathbb{P}_n^d = \text{span}\left\{ x^\alpha : |\alpha| = n, \alpha \in \mathbb{N}_0^d\right\}$$.
+        $$Π_n^d = \text{span}\left\{ x^\alpha : |\alpha| \leq n, \alpha \in \mathbb{N}_0^d\right\}$$.
+
+The dimensions of these spaces are: $$\text{dim}(\mathbb{P}_n^d) = \binom{n+d-1}{d}$$.
+$$\text{dim}(Π_n^d) = \binom{n+d}{d}$$.
+
+WHY? Because in, say, two variables, the span of the monomials of deg 2 is sums
+of x^2, y^2, xy, i.e. the dimension is 3. To represent all monomials of degree
+d, we need $\binom{n+d-1}{n}$ monomials. Another example: in degree 3 but with
+2 variables, we need x^3, y^3, x^2y, xy^2. That's 4 monomials =
+(2+3-1)!/(3!)(1!). The complexity, then, of orthogonal polynomial recurrences
+in multivariate spaces is a function of the fact that increasing the degree by
+one does not increase the size of the required basis by one.
+
+Dimension: count of functions required to form a basis.
+So, in a 2-d vector space, we need two vectors: (0,1) and (1,0) to form a basis.
+In a multi-dimensional polynomial space, 
+we need to count the number of monomials of degree n.
+
+
+For orthogonal polynomials, then, we define:
+    V_n^d = \text{span}\left\{p \in \Pi_n^d : <p,q> = 0, \forall q \in \Pi^d_{n-1} \right\}$$.
+
+So, the space of polynomials up to degree n that are orthogonal w.r.t all
+polynomials of degree up to n-1.
+
+From the paper:
+    "Our assumption (1) on the non-degeneracy of μ implies that dim 
+                $$V_n^d = \text{dim} \mathbb{P}_n^d$$
+
+    This allows us to state results in terms of size-$r_n$ vector functions
+    containing orthonormal bases of $V_n^d$. For $n \geq 0$
+
+    We fix any orthonormal basis for each $n \in \mathbb{N}_0$,
+
+    \mathbb{p}_n^d = (p_{n,1}, p_{n,2}, \ldots, p_{n,r_n})' 
+    span{p_{n,j}}^{r_n}_{j=1} = V_n^d
+
+WHY DO WE FIX THIS BASIS?
+
+In the univariate case, the orthogonal polynomials have a dimension 1 since
+this is the dimension of the span of the monomials of degree n. This
+means that, given $\mu$, there is a unique orthogonal polynomial sequence.
+Because the dimension of $\V_n^d$ is the same as the dimension of the space
+spanned by the monomials of degree n, there is a unique orthogonal polynomial sequence...
+since the dimension of the added basis when increasing the degree is the
+dimension of the space spanned by the monomials of that degree.
+
+In multiple dimensions there is not! This is because the dimension is larger.
+
+
+Having fixed such a basis, there is a three-term recurrence relation on that basis.
+Specifically, there exist UNIQUE matrices
+
+A_{n+1} \in \mathbb{R}^{r_{n} \times r_n}
+B_{n+1} \in \mathbb{R}^{r_{n} \times r_{n+1}}
+
+such that:
+    x_i p_{n} = B_{{n+1},i} p_{n+1}(x) + A_{{n+1},i} p_{n}(x) + B_{{n},i} p_{n-1}(x)
+
+These must satisfy the following:
+    rank(B_{n},i) = r_{n-1} rank (B_{n}) = r_{n} where $B_n$ = (B'_{n,1}, B'_{n,2}, \ldots, B'_{n,d})' \in \mathbb{R}^{dr_{n-1} \times r_n}$
+
+
+Given an orthonormal basis there exist such matrices. Favard's theorem for
+univariate polynomials implies the inverse in the univariate case. 
+
+However, in the multivariate case the matrices must fulfil the commuting 
+conditions...
+
+The commuting conditions are a complicated set of relations between the recurrence 
+matrices.
+
+Why do they hold?
+
+Essentially, the idea is that the Favard relation in the univariate case can be
+written as a diagonalised operator. The spectral theorem relates bounded,
+self-adjoint operators to the multiplication operator. The corresponding Jacobi
+operator in the multivariate case only fulfils the requirements of the spectral
+theorem IF they fulfil the commuting conditions. This is the key insight, and 
+relayed in the paper "Multivariate Orthogonal Polynomials and Operator Theory"
+by Yuan Xu (1994).
+
+From the paper:
+    Section 3: Evaluation of polynomials
+    The three-term recurrence does not immediately yield an evaluation scheme.
+    We discuss in this section one appraoch for such an evaluation, which prescribes
+    a fixed orthonormal basis. (That is, we remove most of the unitary equivalence for p_n)
+    Out solution for this is introduction of a particular "canonical" form.
+
+    3.1: Canonical bases
+
+    The three-term recurrence (4):
+        x_i p_n(x) = B_{n+1,i} p_{n+1}(x) + A_{n+1,i} p_n(x) + B'_{n,i} p_{n-1}(x) (4)
+    
+    for a fixed i \in [d] is an underdetermined set of equations for P_{n+1}
+    and hence this cannot be used in isolation to evaluate polynomials. To make the
+    system determined, one could consider (4) for all $i \in [d]$ simultaneously.
+    To aid in this type of procedure, we make a special choice of orthonormal 
+    basis that we will see amoutns to choosing a particular sequence of unitary 
+    transformations.
+    
+    Definition 3.1 Let {p_n}_{n \in N_0} be an orthonormal set of polynomials with recurrence
+    matrices A_{n,i} and B_{n,i} for each i \in [d]. We say that {p_n}_{n \in N_0} is 
+    a canonical basis, and that the matrices A_{n,i} and B_{n,i} are in canonical form
+    if the following is true: For every $n \in N$ we have:
+        B_n'B_n = \sum_{i=1}^d B_{n,i}'B_{n,i} = \Lambda_n
+
+    where B_n = (B_{n,1}, B_{n,2}, \ldots, B_{n,d})' \in \mathbb{R}^{dr_{n-1} \times r_n}
+    and the matrices \left\{\Lambda_n\right\}_{n \in N} are diagonal with the elements of each 
+    matrix appearing in non-decreasing order.
+
+
+    Theorem 3.1 Let the orthonormal basis {\mathbb{p}_n}_{n \in N_0} be a canonical basis so that t
+    the associated matrices An,i and Bn,i satisfy (8). Then,
+    
+    Λ_{n+1}\mathbb{p}_{n+1} = \sum_{i \in [d]} x_i B_{n+1},i\mathbb{p}_{n} - (\sum_{i \in [d]} B'_{{n+1},i} A_{{n+1},i})\mathbb{p}_{n} - \sum_{i \in [d]}B'_{{n+1},i} B'_{n,i}\mathbb{p}_{n-1} (9)
+
+    for each $n \in N_0$, where Λ_{n+1} \in \mathbb{R}^{r_{n+1}\times r_{n+1}} is diagonal and positive definite.
+
+{As far as I understand it,
+ The idea is somehow that we have to consider multiple simultaneous relations
+ that are related to the "pushing" of the operator in any one of the various
+ dimensions, one according to each variable. That is, for each of the variables
+ in the multivariate field over which the polynomials are defined, we can think
+ of the relation between the polynomials of degree {n+1} in terms of a "push"
+ from the polynomials of degree $n$, just as we have the (x-β_n)P_n(x) term in
+ the univariate case. THis univariate case "pushes" P_n into P_{n+1}-land via
+ muiltiplication by its only variable. Spectrally one can push a function into
+ a higher degree space by multiplication by the variable. The pushing in the
+ multivariate case can come from different directions, as it were, so we must
+ build up the recurrence relations using each of the variables from which we
+ could get 'pushed'.
+
+ This last relation from Theorem 3.1 aggregates over these "push" relations
+ via summation.
+ }
+ 
+From the paper: (Page 5, last paragraph)
+Equation (9) demonstrates  how knowledge of the (A_{n+1, i}, B_{n+1, i}) translates into direct evaluation of \mathbb{p}_{n+1}:
+    the right-hand side  of (9) is computable, and need only be scaled elemtnwise by the inverse diagonal of $Λ_{n+1}$.
+    The main requirement of this simple technique is that the recurrence matrices are in canonical form. Fortunately, it is simple to transform
+    any valid recurrence matrices into canonical form.
+
+    Section 3.2.: Transformation to canonical form.
+
+    Let {U_n}_{n>=0} be a sequence of orthogonal matrices defining a new basis such that:
+        U_n \mathbb{p}_n = \mathbb{q}_n = (q_{n,1}, q_{n,2}, \ldots, q_{n,r_n})' \in \mathbb{R}^{r_n}
+        U_n' U_n = I_{n}
+    
+    where {q_{n,j}}_{j=1}^{r_n} is an orthonormal basis for $V_n^d$.
+    
+
+A manipulation of (4) shows that the basis elements $\mathbb{q}_n$ satisfy the following three-term recurrence:
+    x_i q_n = D_{n+1,i} q_{n+1} + C_{n+1,i} q_n + D_{n,i} q_{n-1}, i \in [d]
+
+where the matricess D_{n,i} and C_{n,i} can be explicitly derived from the unitary matrices U_n:
+
+    C_{n,i} = U_{n-1} A_{n,i} U'_{n-1}
+    D_{n,i} = U_{n-1} B_{n,i} U'_{n}
+
+Our goal then is to take arbitrary valid recurrence matrices (A_{n,i}, B_{n,i})
+and identify the unitary transform matrices {U_n}_{n>=0} so that (C_{n,i},
+                                                                  D_{n,i}) are
+in canonical form. 
+
+Since B_n'B_n is symmetric, it has eigenvalue decomposition. 
+Let B_n'B_n = V_n \Lambda_n V_n' where V_n is orthogonal and Λ_n is diagonal.
+
+"Our computational strategy computes A_{n,i} and B_{n,i} through manipulations of polynomials computed via (9),
+which are assumed to be orthonormal polynomials. One subtlety is that if we prescribe
+recurrence matrices (throught a computational procedure), then usage of (9) requires additional conditions
+to be equivalent to (4). THis is summarised in the following Theorem: 
+
+Theorem 3.2 Given matrices A_{n,i} and B_{n,i} i, let $\mathbb{p}_n$ be generated through (9).
+
+Then, {p_n}_{n \in N_0} is orthonormal with respect to some positive definite bilinear functional on $\mathbb{R}^d$ if and only if the following conditions hold:
+
+    - A_{n,i} is symmetric for all (i, n) \in [d] \times N_0
+    - B_{n,i} satisfies the rank condition in (5): rank(B_{n,i}) = r_{n-1}
+    - The matrices satisfy the commuting conditions.
+
+Additional conditions are required to ensure that the stated positive-definite
+functional is integration with respect ot a measure $\mu$, but since our
+algorithm only considers finite n, such a distinction is not necessary for us.
+
+
+Section 5: Algorithms for computing recurrence coefficient matrices
+We discuss two strategies for computing the recurrence matrices, (A_{n,i}, B_{n,i}).
+The first is a moment-based approach, which uses moments (e.g. of monomials) to compute
+an orthonormal basis that can be used directly with (7) to compute the matrices.
+
+            A_{n+1,i} =  \int x_i p_{n} p^T_{n} d\mu
+            B_{n+1,i} =  \int x_i p_{n} p^T_{n+1} d\mu
+
+A is determined by (quadratic) moments of the polynomials.
+
+The moment method is very poorly conditioned.
+
+A straightforward approach is to first perform an orthogonalisation step to numerically 
+generate orthogonal polynomials as linear expansions in some specified basis (say monomials), 
+and second to exploit the linear expansion expressions to compute the recurrence coefficients.
+
+This works in the multivariate setting as well.
+
+We suppose that a polynomial basis $\{ \phi_j \}_{j \in \mathbb{N}}$ is given, 
+with the properties
+        span { \phi_j }_{j=1}^{R_n} = \Pi_n^d
+
+        r_n < j < r_{n+1} => def(\phi_j) = n
+
+ A simple example is that $\phi_j = x^\alpha$ for some total ordering of the multi-indices, $\alpha$,
+ that respects the partial order induced by the l^1(N_0^d) norm.
+ We assume that quadratic $\phi_j$ moments are available, allowing us to compute a Gram matrix,
+
+                                (G_n)_i,j = m(i,j)
+
+                        m(i,j) = \int \phi_i \phi_j d\mu
+
+Given this matrix, we can compute monomial expansions of the the orthonormal basis
+P_n:
+
+    G_n = L_n L_n' (p_0,..., P_n)' = L_n^{-1}  Φ_n,
+    Φ_n = ( \phi_1, \phi_2, \ldots, \phi_{R_n} )' 
+
+
+
+Multivariate-Stieltjes Algorithm:
+     In this section we descrive a Stieltjes-like procedure for computing the
+     recurrence matrices. which partially overcomes the ill-conditioning issues
+     of the moment method. Like the univariate procedure, we directly compute
+     the recurrence matrices instead of attempting to orthogonalise the basis,
+     and the procedure is iterative on the degree n. Thus throughout this
+     section we assume that the recurrence matrices {A_{m,i},
+                                                     B_{m,i}}_{i\in[d]},m<=n
+     are known and in canonical form.
+
+
+"""

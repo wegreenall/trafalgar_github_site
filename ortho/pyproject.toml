@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ortho"
+version = "0.1.0"
+description = "Library for handling orthogonal polynomials, based in Pytorch"
+authors = ["wegreenall <wjgreenall@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.23.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
